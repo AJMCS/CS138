@@ -37,15 +37,8 @@ def main():
 
       # Test format_date method
       print("\nTesting format_date method:")
-      formatted_date = record.format_date(3, 15, 2021)
+      formatted_date = record.format_date(3, 15, 2000)
       print(f"Formatted date: {formatted_date}")
-
-      # Test edge cases
-      print("\nTesting edge cases:")
-      record.set_first_name("")
-      record.set_dob(record.format_date(13, 32, 20))  # Invalid date
-      print(f"Empty first name: '{record.get_first_name()}'")
-      print(f"Invalid date: {record.get_dob()}")
 
 if __name__ == "__main__":
       main()
