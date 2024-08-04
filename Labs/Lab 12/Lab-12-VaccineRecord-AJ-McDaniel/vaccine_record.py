@@ -20,16 +20,16 @@ VaccineRecord
 '''
 
 class _VaccineRecord_:
-    def __init__(self):
-        self.__first_name = ""
-        self.__last_name = ""
-        self.__dob = ""
-        self.__d1_manufacturer = ""
-        self.__d1_date = ""
-        self.__d1_location = ""
-        self.__d2_manufacturer = ""
-        self.__d2_date = ""
-        self.__d2_location = ""
+    def __init__(self, first_name, last_name, dob, d1_manufacturer, d1_date, d1_location, d2_manufacturer, d2_date, d2_location):
+        self.__first_name = first_name
+        self.__last_name = last_name
+        self.__dob = dob
+        self.__d1_manufacturer = d1_manufacturer
+        self.__d1_date = d1_date
+        self.__d1_location = d1_location
+        self.__d2_manufacturer = d2_manufacturer
+        self.__d2_date = d2_date
+        self.__d2_location = d2_location
 
     #toString
     def __str__(self):
