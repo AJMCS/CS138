@@ -1,79 +1,58 @@
-"""A one line summary of the program, terminated by a period.
+'''
+DEVELOPER: AJ McDaniel
+COLLABORATORS: None
+DATE: 8/3/2024
+'''
 
-Leave one blank line.  The rest of this docstring should contain an
-overall description of the program.
+"""This program calculates how much plastic bottle waste you make.
+
+I didn't have much time to be very original and "inspired" for this UD so I just made a very practical program that has real world benefit to people who use it.
+It is much better to use reusable cups for everyday consumption and looking at how much plastic you use on a daily basis can help reduce unnecessary waste.
 """
 
-##########################################
-# IMPORTS:
-#   <list modules needed for program and their purpose>
-##########################################
-import random
+def calculate_plastic_saved(bottles_per_day):
+    days_in_year = 365
+    return bottles_per_day * days_in_year
 
-
-##########################################
-# FUNCTIONS:
-##########################################
-
-def create_tuple(kanji: list, english: list) -> list:
-    tupleList = []
-    for i in range(len(kanji)):
-        tupleList.append(tuple(kanji[i],english[i]))
-    
-    return tupleList
-
-
-def pick_questions(questionsList):
-    test = []
-    while(len(test) <= 5):
-        question = questionList[randrange(0,15)]
-        #Check if the question already exists in the test
-        if question not in test:
-            test.append(question)
-
-
-def ask_question(question: tuple):
-    print("\n\n")
-    answer = input("What is the meaning of the character", question[0], "in english?")
-
-    if(answer == question[1]):
-        print("\n\nCorrect! Good job")
-        return 1
-    else:
-        print("\n\nIncorrect! the answer is", question[1])
-        return 0
-
-
-##########################################
-# MAIN PROGRAM:
-##########################################
 def main():
-    sentinel = True
-    kanji = ["一","二","三","水","火","木","日","円","学","時","日本","東京","拉麺","先生","大学"]
-    english = ["one","two","three","water","fire","tree","sun","yen","study","time","japan","tokyo","ramen","sensei","college"]
-    questionsList = create_tuple(kanji, english)
+    print("Welcome to the Plastic Bottle Reduction Calculator!")
+    print("This program will help you see the impact of reducing the amount of plastic bottles you use.")
 
-    Print("Welcome to Kanji Quiz!\n\n")
-    while(sentinel):
+    # Input with error checking (repetition structure)
+    while True:
 
-        play = input("Start a new game? (y/n): ").lower()
+        bottles_per_day = int(input("How many plastic water bottles do you use per day on average? "))
 
-        while(play != 'y' or play != 'n'):
-            play = input("Invalid Entry: Please enter (y/n): ")
-        
-            if(play == 'y'):
-                correct = 0
-                quiz = pick_questions(questionsList)
+        while bottles_per_day < 0:
+            bottles_per_day = int(input("Please enter a non-negative number."))   
+        break
 
-                for i in range(4):
-                    correct += ask_question(quiz[i])
+    bottles_per_year = calculate_plastic_saved(bottles_per_day)
 
-                print("Final Score:", correct + "/5")
-            
-            else:
-                sentinel = False
-        
+    print(f"\nIf you use {bottles_per_day:.1f} bottles per day, that's about {bottles_per_year:.0f} bottles per year!")
 
-    print("\n\nprogram ended.")
+    # Decision structure
+    if bottles_per_year > 365:
+        print("That's more than one bottle per day on average.")
+    elif bottles_per_year > 0:
+        print("Good job keeping it under one bottle per day, but there's still room for improvement!")
+    else:
+        print("Fantastic! You're not using any disposable water bottles.")
 
-main()
+    # String manipulation
+    reduction_goal = input("\nEnter a reduction goal (example: '10' for 10%): ").lower()
+
+    if "%" in reduction_goal:
+        percentage = float(reduction_goal.strip("%")) / 100
+        reduced_bottles = bottles_per_year * (1 - percentage)
+    else:
+        print("Invalid reduction goal. Instead, lets see what a 10% reduction looks like.")
+        reduced_bottles = bottles_per_year * 0.9
+
+    bottles_saved = bottles_per_year - reduced_bottles
+
+    print(f"\nIf you reduce your consumption by {reduction_goal}, you would save approximately {bottles_saved} bottles per year!")
+    print("Remember, using a reusable water bottle is even better for the environment!")
+
+if __name__ == "__main__":
+    main()
