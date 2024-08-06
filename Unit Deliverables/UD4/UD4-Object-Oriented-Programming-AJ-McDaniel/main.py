@@ -1,29 +1,37 @@
 '''
-DEVELOPER: <your name>
-COLLABORATORS: <anyone you worked with>
-DATE: <date last worked on>
+DEVELOPER: AJ McDaniel
+COLLABORATORS: None
+DATE: 8/2/2024
 '''
 
-"""A one line summary of the program, terminated by a period.
+"""This is a finance Manager GUI that allows you to deposit, withdraw, and add interest
 
-Leave one blank line.  The rest of this docstring should contain an
-overall description of the program.
+There are a lot of people who want to improve on their fiscal responsibility. This simple finance manager can help you simulate how money works. It allows for three basic functions. 1 depositing money, withdrawing money, and adding interest to your savings account based on the interest rate. This way you can see how interest compounds over time and play with different scenarios to get a general understanding of personal finance basics.
 """
 
 ##########################################
 # IMPORTS:
 #   <list modules needed for program and their purpose>
 ##########################################
-#<replace this line with import statement(s)>
+import tkinter as tk
+from bank_account import BankAccount
+from savings_account import SavingsAccount
+from fin_manager import FinanceManagerGUI
 
 
 ##########################################
 # FUNCTIONS:
 ##########################################
-#<replace this line with function definitions, each needs a description>
+# NONE
 
 
 ##########################################
 # MAIN PROGRAM:
 ##########################################
-#<replace this line with your main program>
+def main():
+    root = tk.Tk()
+    app = FinanceManagerGUI(root)
+    root.mainloop()
+
+if __name__ == "__main__":
+    main()
